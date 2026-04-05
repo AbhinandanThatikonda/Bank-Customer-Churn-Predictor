@@ -55,7 +55,7 @@ if submit:
     # 3. ROI Calculation
     expected_roi = (clv * rate) - cost
 
-    # 4. Extract Top 2 Drivers
+    # 4. Extract Top 2 Factors
     preprocessor = model.named_steps['preprocessor']
     classifier = model.named_steps['classifier']
     input_proc = preprocessor.transform(input_df)
@@ -90,7 +90,7 @@ if submit:
         
         # Color Logic
         risk_color = "#D32F2F" if prob > 0.5 else "#388E3C"
-        # THE FIX: changed 'unsafe_content_type' to 'unsafe_allow_html'
+        
         st.markdown(f"<h1 style='color:{risk_color}; margin-top:-15px;'>{prob:.1%}</h1>", unsafe_allow_html=True)
         
         if prob > 0.5:
