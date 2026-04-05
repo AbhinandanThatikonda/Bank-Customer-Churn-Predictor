@@ -28,7 +28,7 @@ def run_analytics(clv=2000, retention_cost=200, success_rate=0.5):
     print(f"Projected Net Profit: ${net_profit:,.2f}")
     print("="*30 + "\n")
 
-    # 4. SHAP Explainability (The Fix for the Plot)
+    # 4. SHAP Explainability
     preprocessor = model.named_steps['preprocessor']
     classifier = model.named_steps['classifier']
     
@@ -44,7 +44,7 @@ def run_analytics(clv=2000, retention_cost=200, success_rate=0.5):
     shap_values = explainer.shap_values(X_test_proc)
 
     # Handle the SHAP value shape for Random Forest
-    # We want index [1] which represents the "Exited" (Churn) class
+    
     if isinstance(shap_values, list):
         final_shap = shap_values[1]
     else:
